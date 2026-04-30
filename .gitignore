@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Итоговые файлы лабы не коммитим
+result_task_*.json
+result_task_*.xml
+
+.env
