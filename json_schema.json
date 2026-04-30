@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adobe Photoshop CVE enriched data schema",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "ID",
+      "vendor_release_date",
+      "vendor_release_url",
+      "url",
+      "published_date",
+      "updated_date",
+      "description",
+      "cvss_list",
+      "cpe_list",
+      "cwe"
+    ],
+    "properties": {
+      "ID": {
+        "type": "string",
+        "pattern": "^CVE-\\d{4}-\\d{4,7}$"
+      },
+      "vendor_release_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "vendor_release_url": {
+        "type": "string",
+        "format": "uri",
+        "minLength": 1
+      },
+      "url": {
+        "type": "string",
+        "format": "uri",
+        "minLength": 1
+      },
+      "published_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "updated_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "description": {
+        "type": "string",
+        "minLength": 1
+      },
+      "cvss_list": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "version",
+            "score",
+            "vector",
+            "severity"
+          ],
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "vector": {
+              "type": "string",
+              "minLength": 1
+            },
+            "severity": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "cpe_list": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "cwe": {
+        "type": "object",
+        "minProperties": 1,
+        "patternProperties": {
+          "^CWE-\\d+$": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "description"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

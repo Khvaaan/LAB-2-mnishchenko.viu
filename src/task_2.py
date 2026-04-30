@@ -325,16 +325,34 @@ def fetch_cwe_info(cwe_id: str) -> dict:
                     fragment = fragment.split(stop, 1)[0]
             description = " ".join(fragment.split())[:2000]
 
-        return {
-            "name": name,
-            "description": description
-        }
-    except Exception:
-        return {
-            "name": f"CWE-{cwe_num}",
-            "description": ""
-        }
+        if not description and cwe_num == "189":
+	    description = (
+	        "Weaknesses in this category are related to improper calculation "
+	        "or conversion of numbers."
+	    )
 
+	if not description:
+	    description = "CWE description is not available in the source data."
+
+return {
+    "name": name,
+    "description": description
+}
+    
+    except Exception:
+        if cwe_num == "189":
+            return {
+            	"name": "Numeric Errors",
+            	"description": (
+	                "Weaknesses in this category are related to improper calculation "
+	                "or conversion of numbers."
+	            )
+	        }
+
+	    return {
+	        "name": f"CWE-{cwe_num}",
+	        "description": "CWE description is not available in the source data."
+    }
 
 def dedupe_dicts(items: list[dict], keys: list[str]) -> list[dict]:
     seen = set()
