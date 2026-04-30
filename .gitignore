@@ -7,3 +7,4 @@ result_task_*.json
 result_task_*.xml
 
 .env
+report_task_4_validation_errors.json
