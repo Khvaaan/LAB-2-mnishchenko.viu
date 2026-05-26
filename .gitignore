@@ -8,3 +8,10 @@ result_task_*.xml
 
 .env
 report_task_4_validation_errors.json
+
+# SSH keys
+ssh-key
+ssh-key.pub
+id_ed25519
+id_ed25519.pub
+*.key
